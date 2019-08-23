@@ -31,7 +31,10 @@ module RicException
 
 				def notify_exception
 					exception = env["action_dispatch.exception"]
+          Rails.logger.warning "notify_exception"
+          Raven.capture_exception(exception)
 					if exception && RicException.mailer_sender && RicException.mailer_receiver
+            
 						begin 
 							RicException::ExceptionMailer.notify(exception).deliver_now
 						rescue StandardError => e
