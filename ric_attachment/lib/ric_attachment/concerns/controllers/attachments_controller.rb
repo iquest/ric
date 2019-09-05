@@ -52,8 +52,8 @@ module RicAttachment
 
 				def show
 					if @attachment && @attachment.file.exists?
-						#redirect_to @attachment.file.url
-						send_file @attachment.file.path, type: @attachment.file_content_type, disposition: "inline"
+						redirect_to @attachment.file.url
+						#send_file @attachment.file.path, type: @attachment.file_content_type, disposition: "inline"
 					else
 						render plain: "", status: :not_found
 					end
